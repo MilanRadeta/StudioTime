@@ -6,7 +6,7 @@ import { FIREBASE_WEB_APP_CONFIG } from "./firebase.config";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Initialize Firebase
-export const FIREBASE_APP = initializeApp(FIREBASE_WEB_APP_CONFIG);
+export const FIREBASE_CLIENT_APP = initializeApp(FIREBASE_WEB_APP_CONFIG);
 // const analytics = getAnalytics(app);
-export const FIREBASE_AUTH = getAuth(FIREBASE_APP);
+export const FIREBASE_AUTH = getAuth(FIREBASE_CLIENT_APP);
 FIREBASE_AUTH.setPersistence({ type: "NONE" });

@@ -9,8 +9,9 @@ export class FirebaseErrorFilter implements ExceptionFilter {
         const ctx = host.switchToHttp();
         const response = ctx.getResponse<Response>();
         const { url: path } = ctx.getRequest<Request>();
-
-        if (code === AuthErrorCodes.WEAK_PASSWORD) {
+        const errorCodes = [AuthErrorCodes.WEAK_PASSWORD, AuthErrorCodes.INVALID_PASSWORD] as string[];
+        
+        if (errorCodes.includes(code)) {
             const status = HttpStatus.BAD_REQUEST;
             response
                 .status(status)
