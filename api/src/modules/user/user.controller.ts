@@ -23,8 +23,8 @@ export class UserController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: Partial<User>) {
-    return this.userService.update({ ...updateUserDto, uid: id });
+  update(@Param('id') uid: string, @Body() updateUserDto: Partial<User>) {
+    return this.userService.update({ ...updateUserDto, uid });
   }
 
   @Delete(':id')

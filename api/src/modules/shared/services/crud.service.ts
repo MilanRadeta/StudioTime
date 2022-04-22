@@ -21,15 +21,14 @@ export abstract class CrudService<T extends BaseEntity> {
     }
 
     async create(entity: T) {
-        const found = await this.findOne(entity.uid);
-        if (found) {
-            throw new BadRequestException("Duplicate entity");
-        }
+        entity.uid = undefined;
         return this.save(entity);
     }
 
     async save(entity: T) {
-        await this.collection.doc(entity.uid).set(entity);
+        const doc = entity.uid ? this.collection.doc(entity.uid) : this.collection.doc();
+        entity.uid = doc.id;
+        await doc.set(entity);
         return entity;
     }
 

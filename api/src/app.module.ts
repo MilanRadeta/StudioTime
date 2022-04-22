@@ -1,18 +1,25 @@
-import { Module } from '@nestjs/common';
+import { Module, ValidationPipe } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { FirebaseAuthGuard } from './modules/shared/guards/firebase-auth.guard';
 import { FirebaseAuthStrategy } from './modules/shared/strategies/firebase-auth.strategy';
+import { StudioModule } from './modules/studio/studio.module';
 
 @Module({
-  imports: [UserModule, AuthModule],
+  imports: [UserModule, AuthModule, StudioModule],
   controllers: [AppController],
-  providers: [AppService, FirebaseAuthStrategy, {
-    provide: APP_GUARD,
-    useClass: FirebaseAuthGuard,
-  }],
+  providers: [AppService, FirebaseAuthStrategy,
+    {
+      provide: APP_GUARD,
+      useClass: FirebaseAuthGuard,
+    },
+    {
+      provide: APP_PIPE,
+      useClass: ValidationPipe,
+    },
+  ],
 })
-export class AppModule {}
+export class AppModule { }
