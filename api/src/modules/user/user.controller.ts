@@ -1,16 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Request } from '@nestjs/common';
-import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Request } from '@nestjs/common';
 import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier';
+import { User } from './entities/user.entity';
+import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
   @Post()
-  create(@Request() { user }: { user: DecodedIdToken }, @Body() createUserDto: CreateUserDto) {
-    return this.userService.create({ ...createUserDto, uid: user.uid });
+  create(@Request() { user }: { user: DecodedIdToken }, @Body() createUserDto: User) {
+    return this.userService.save({ ...createUserDto, uid: user.uid });
   }
 
   @Get()
@@ -20,16 +19,16 @@ export class UserController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+    return this.userService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
+  update(@Param('id') id: string, @Body() updateUserDto: Partial<User>) {
+    return this.userService.update({ ...updateUserDto, uid: id });
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+    return this.userService.remove(id);
   }
 }
