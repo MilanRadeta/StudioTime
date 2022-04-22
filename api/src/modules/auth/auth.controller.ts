@@ -14,9 +14,9 @@ export class AuthController {
     return this.authService.login(loginDto);
   }
 
-  @Post("/register")
+  @Post("/signup")
   @SetMetadata('public', true)
-  public register(@Body() loginDto: LoginDto) {
-    return this.authService.register(loginDto);
+  public signup(@Body() loginDto: LoginDto) {
+    return this.authService.signup(loginDto);
   }
 }

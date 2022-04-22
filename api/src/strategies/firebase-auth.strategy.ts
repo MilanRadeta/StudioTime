@@ -16,11 +16,10 @@ export class FirebaseAuthStrategy extends PassportStrategy(
     });
   }
   async validate(token: string) {
-    const firebaseUser: any = await FIREBASE_ADMIN_APP
+    const firebaseUser = await FIREBASE_ADMIN_APP
       .auth()
       .verifyIdToken(token, true)
       .catch((err) => {
-        console.log(err);
         throw new UnauthorizedException(err.message);
       });
     if (!firebaseUser) {

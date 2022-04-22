@@ -11,7 +11,7 @@ export class AuthService {
     return await user.getIdToken();
   }
 
-  async register(loginDto: LoginDto) {
+  async signup(loginDto: LoginDto) {
     const { user } = await createUserWithEmailAndPassword(FIREBASE_AUTH, loginDto.email, loginDto.password);
     return await user.getIdToken();
   }
