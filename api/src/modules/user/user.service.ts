@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common';
+import { USERS } from 'src/modules/shared/firebase/firestore/collections';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  async create(user: CreateUserDto) {
+    await USERS.doc(user.uid).set(user);
+    return user;
   }
 
   findAll() {

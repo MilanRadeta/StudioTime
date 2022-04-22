@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { FIREBASE_AUTH } from 'src/firebase/firebase.client';
+import { FIREBASE_AUTH } from 'src/modules/shared/firebase/firebase.client';
 import { LoginDto } from './dto/login.dto';
 
 @Injectable()

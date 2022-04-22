@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy as FirebaseJwtStrategy } from "passport-firebase-jwt";
-import { FIREBASE_ADMIN_APP } from "src/firebase/firebase.admin";
+import { FIREBASE_ADMIN_APP } from "src/modules/shared/firebase/firebase.admin";
 
 export const FirebaseAuthStrategyName = 'firebase-auth'
 
