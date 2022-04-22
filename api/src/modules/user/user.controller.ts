@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Request } from '@nestjs/common';
 import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UserService } from './user.service';
 
@@ -23,7 +24,7 @@ export class UserController {
   }
 
   @Patch(':id')
-  update(@Param('id') uid: string, @Body() updateUserDto: Partial<User>) {
+  update(@Param('id') uid: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update({ ...updateUserDto, uid });
   }
 
@@ -31,4 +32,5 @@ export class UserController {
   remove(@Param('id') id: string) {
     return this.userService.remove(id);
   }
+
 }

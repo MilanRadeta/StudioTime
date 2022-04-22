@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Request } from '@nestjs/common';
 import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier';
+import { UpdateStudioDto } from './dto/update-studio.dto';
 import { Studio } from './entities/studio.entity';
 import { StudioService } from './studio.service';
 
@@ -27,7 +28,7 @@ export class StudioController {
   }
 
   @Patch(':id')
-  update(@Param('id') uid: string, @Body() updateStudioDto: Partial<Studio>) {
+  update(@Param('id') uid: string, @Body() updateStudioDto: UpdateStudioDto) {
     return this.studioService.update({ ...updateStudioDto, uid });
   }
 

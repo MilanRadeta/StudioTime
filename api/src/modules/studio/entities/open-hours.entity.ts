@@ -1,12 +1,12 @@
-import { IsEnum, IsMilitaryTime } from "class-validator";
+import { IsDate, IsEnum } from "class-validator";
 import { DayOfWeek } from "./day-of-week.entity";
 
 export class OpenHours {
     
-    @IsMilitaryTime()
+    @IsDate()
     from: Date;
 
-    @IsMilitaryTime()
+    @IsDate()
     to: Date;
 
     @IsEnum(DayOfWeek)
