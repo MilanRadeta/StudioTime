@@ -1,5 +1,5 @@
 import { Body, Controller, Post, SetMetadata, UseFilters } from '@nestjs/common';
-import { FirebaseErrorFilter } from 'src/exception-filters/firebase-exception.filter';
+import { FirebaseErrorFilter } from 'src/modules/shared/exception-filters/firebase-exception.filter';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 

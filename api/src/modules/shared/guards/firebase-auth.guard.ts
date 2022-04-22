@@ -1,7 +1,7 @@
 import { ExecutionContext, Injectable } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { Reflector } from '@nestjs/core';
-import { FirebaseAuthStrategyName } from 'src/strategies/firebase-auth.strategy';
+import { FirebaseAuthStrategyName } from 'src/modules/shared/strategies/firebase-auth.strategy';
 
 @Injectable()
 export class FirebaseAuthGuard extends AuthGuard(FirebaseAuthStrategyName) {
