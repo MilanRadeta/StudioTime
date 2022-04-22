@@ -7,9 +7,10 @@ import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { FirebaseAuthGuard } from './modules/shared/guards/firebase-auth.guard';
 import { FirebaseAuthStrategy } from './modules/shared/strategies/firebase-auth.strategy';
 import { StudioModule } from './modules/studio/studio.module';
+import { RehearsalModule } from './modules/rehearsal/rehearsal.module';
 
 @Module({
-  imports: [UserModule, AuthModule, StudioModule],
+  imports: [UserModule, AuthModule, StudioModule, RehearsalModule],
   controllers: [AppController],
   providers: [AppService, FirebaseAuthStrategy,
     {
