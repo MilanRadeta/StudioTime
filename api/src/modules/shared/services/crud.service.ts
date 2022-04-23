@@ -1,47 +1,31 @@
-import { BadRequestException, NotFoundException } from '@nestjs/common';
-import { FIRESTORE } from '../firebase/firebase.admin';
-
-type BaseEntity = { uid: string };
+import { BaseEntity } from '../entities/base.entity';
+import { CrudRepository } from '../repository/crud.repository';
 
 export abstract class CrudService<T extends BaseEntity> {
 
-    protected collectionName: string;
+    constructor(protected repo: CrudRepository<T>) {}
 
-    get collection() {
-        return FIRESTORE.collection(this.collectionName);
-    }
-
-    async findAll() {
-        const { docs } = await this.collection.get();
-        return docs.map(d => d.data() as T);
+    findAll() {
+        return this.repo.findAll();
     }
 
     findOne(id: string) {
-        return this.collection.doc(id).get().then(d => d.data() as T);
+        return this.repo.findOne(id);
     }
 
-    async create(entity: T) {
-        entity.uid = undefined;
-        return this.save(entity);
+    create(entity: T) {
+        return this.repo.create(entity);
     }
 
-    async save(entity: T) {
-        const doc = entity.uid ? this.collection.doc(entity.uid) : this.collection.doc();
-        entity.uid = doc.id;
-        await doc.set(entity);
-        return entity;
+    save(entity: T) {
+        return this.repo.save(entity);
     }
 
-    async update(entity: Partial<T>) {
-        const found = await this.findOne(entity.uid);
-        if (!found) {
-            throw new NotFoundException("Entity not found");
-        }
-        entity = { ...found, ...entity };
-        return this.save(entity as T);
+    update(entity: Partial<T>) {
+        return this.repo.update(entity);
     }
 
-    async remove(id: string) {
-        await this.collection.doc(id).delete();
+    remove(id: string) {
+        return this.repo.remove(id);
     }
 }
