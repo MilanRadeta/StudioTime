@@ -1,5 +1,5 @@
 import { IsNotEmpty } from "class-validator";
-import { Address } from "src/modules/shared/entities/address.entity";
+import { Address } from "src/modules/shared/model/address.entity";
 
 export class User {
     uid: string;

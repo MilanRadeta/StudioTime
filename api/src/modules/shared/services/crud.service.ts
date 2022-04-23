@@ -1,4 +1,4 @@
-import { BaseEntity } from '../entities/base.entity';
+import { BaseEntity } from '../model/base.entity';
 import { CrudRepository } from '../repository/crud.repository';
 
 export abstract class CrudService<T extends BaseEntity> {

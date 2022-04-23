@@ -1,6 +1,6 @@
 import { Type } from "class-transformer";
-import { ArrayMinSize, IsArray, IsNotEmpty, IsNumberString, ValidateNested } from "class-validator";
-import { Address } from "src/modules/shared/entities/address.entity";
+import { ArrayMinSize, IsArray, IsNotEmpty, IsNumberString, ValidateBy, ValidateNested } from "class-validator";
+import { Address } from "src/modules/shared/model/address.entity";
 import { OpenHours } from "./open-hours.entity";
 
 export class Studio {
@@ -26,4 +26,11 @@ export class Studio {
 
     @IsArray()
     managers: string[];
+
+    @IsArray()
+    @ArrayMinSize(1)
+    @IsNotEmpty({
+        each: true
+    })
+    rooms: string[];
 }

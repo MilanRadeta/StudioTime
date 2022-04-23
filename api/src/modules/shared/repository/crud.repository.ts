@@ -1,5 +1,5 @@
 import { NotFoundException } from '@nestjs/common';
-import { BaseEntity } from '../entities/base.entity';
+import { BaseEntity } from '../model/base.entity';
 import { FIRESTORE } from '../firebase/firebase.admin';
 
 export abstract class CrudRepository<T extends BaseEntity> {

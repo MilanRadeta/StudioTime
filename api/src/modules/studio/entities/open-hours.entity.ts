@@ -1,14 +1,13 @@
-import { IsDate, IsEnum } from "class-validator";
-import { DayOfWeek } from "./day-of-week.entity";
+import { Type } from "class-transformer";
+import { IsEnum, ValidateNested } from "class-validator";
+import { DayOfWeek } from "src/modules/shared/model/day-of-week.entity";
+import { Period } from "src/modules/shared/model/period.entity";
 
 export class OpenHours {
-    
-    @IsDate()
-    from: Date;
-
-    @IsDate()
-    to: Date;
+    @ValidateNested()
+    @Type(() => Period)
+    period: Period;
 
     @IsEnum(DayOfWeek)
-    day: DayOfWeek;
+    dayOfWeek: DayOfWeek;
 }
