@@ -1,9 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Request } from '@nestjs/common';
 import { DecodedIdToken } from 'firebase-admin/lib/auth/token-verifier';
+import { UpdateRehearsalDto } from './dto/update-rehearsal.dto';
 import { Rehearsal } from './entities/rehearsal.entity';
 import { RehearsalService } from './rehearsal.service';
-import { PartialType } from "@nestjs/mapped-types";
-import { UpdateRehearsalDto } from './dto/update-rehearsal.dto';
 
 @Controller('rehearsal')
 export class RehearsalController {
