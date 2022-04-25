@@ -3,7 +3,7 @@ import { App } from './app/App';
 import { Auth } from './auth/Auth';
 
 export const MAIN_ROUTES = {
-  AUTH: 'auth'
+  AUTH: '/auth'
 }
 
 export const Main = () => {
