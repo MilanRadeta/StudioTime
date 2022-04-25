@@ -21,7 +21,7 @@ export abstract class CrudService<T extends BaseEntity> {
         return this.repo.save(entity);
     }
 
-    update(entity: Partial<T>) {
+    update(entity: Partial<T>, options?: unknown) {
         return this.repo.update(entity);
     }
 
