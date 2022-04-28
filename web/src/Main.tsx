@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import { App } from './app/App';
-import { Auth } from './auth/Auth';
+import { App } from './modules/app/components/App';
+import { Auth } from './modules/auth/components/Auth';
 
 export const MAIN_ROUTES = {
   AUTH: '/auth'

@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useCallback, useState } from "react";
-import { FIREBASE_AUTH } from "../../firebase/firebase.client";
-import { useAuth } from "../AuthContext";
+import { FIREBASE_AUTH } from "../../../shared/firebase/firebase.client";
+import { useAuth } from "../../contexts/AuthContext";
 
 export const LoginWithEmail = () => {
 

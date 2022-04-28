@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import { AuthProvider } from './auth/AuthContext';
 import './index.css';
 import { Main } from './Main';
+import { AuthProvider } from './modules/auth/contexts/AuthContext';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(

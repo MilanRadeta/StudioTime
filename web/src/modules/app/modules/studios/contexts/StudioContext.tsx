@@ -1,22 +1,17 @@
 import React, { useCallback, useEffect } from "react";
-import { useHttp } from "../../http/http";
-
-interface Studio {
-  uid: string;
-  name: string;
-}
+import { useHttp } from "../../../../shared/http/HTTP";
+import { StudioDto } from "../model/StudioDto";
 
 interface StudioContextType {
-  studios: Studio[];
+  studios: StudioDto[];
   loadStudios: () => void;
 }
 
-
 export const StudioProvider = ({ children }: { children: React.ReactNode }) => {
-  const [studios, setStudios] = React.useState<Studio[]>([]);
+  const [studios, setStudios] = React.useState<StudioDto[]>([]);
   const http = useHttp();
   const loadStudios = useCallback(() => {
-    http<Studio[]>('studio').then(res => setStudios(res.data));
+    http<StudioDto[]>('studio').then(res => setStudios(res.data));
 
   }, [http, setStudios])
 

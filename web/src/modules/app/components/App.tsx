@@ -1,13 +1,13 @@
 import { Link, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
-import { useAuth } from '../auth/AuthContext';
-import { MAIN_ROUTES } from '../Main';
-import { Home } from './home/Home';
-import { StudioProvider } from './studios/StudioContext';
-import { Studios } from './studios/Studios';
+import { MAIN_ROUTES } from '../../../Main';
+import { useAuth } from '../../auth/contexts/AuthContext';
+import { Home } from '../modules/home/components/Home';
+import { Studios } from '../modules/studios/components/Studios';
+import { StudioProvider } from '../modules/studios/contexts/StudioContext';
 
 export const APP_ROUTES = {
-  HOME: '/home',
-  STUDIOS: '/studios'
+  HOME: 'home',
+  STUDIOS: 'studios'
 }
 
 export const App = () => {
@@ -20,8 +20,8 @@ export const App = () => {
 
   return <StudioProvider>
     <nav>
-      <Link to={APP_ROUTES.HOME}>HOME</Link>
-      <Link to={APP_ROUTES.STUDIOS}>STUDIOS</Link>
+      <Link to={`/${APP_ROUTES.HOME}`}>HOME</Link>
+      <Link to={`/${APP_ROUTES.STUDIOS}`}>STUDIOS</Link>
     </nav>
     <Routes>
       <Route path={APP_ROUTES.HOME} element={<Home />} />

@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { MAIN_ROUTES } from "../Main";
+import { MAIN_ROUTES } from "../../../Main";
 
 const key = 'TOKEN';
 

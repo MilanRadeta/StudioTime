@@ -1,4 +1,4 @@
-import { useStudio } from "./StudioContext";
+import { useStudio } from "../contexts/StudioContext";
 
 export const Studios = () => {
     const { studios } = useStudio();

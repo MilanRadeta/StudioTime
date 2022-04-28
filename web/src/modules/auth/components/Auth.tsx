@@ -1,11 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "../contexts/AuthContext";
 import { Login } from "./login/Login";
-import { Register } from "./register/Register";
+import { Register } from "./Register";
 
 export const AUTH_ROUTES = {
-  LOGIN: "/login",
-  REGISTER: "/register",
+  LOGIN: "login",
+  REGISTER: "register",
 };
 
 export const Auth = () => {
