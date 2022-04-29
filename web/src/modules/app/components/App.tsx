@@ -2,12 +2,13 @@ import { Link, Navigate, Outlet, Route, Routes, useLocation } from 'react-router
 import { MAIN_ROUTES } from '../../../Main';
 import { useAuth } from '../../auth/contexts/AuthContext';
 import { Home } from '../modules/home/components/Home';
-import { Studios } from '../modules/studios/components/Studios';
+import { StudioList } from '../modules/studios/components/StudioList';
+import { StudioProfile } from '../modules/studios/components/StudioProfile';
 import { StudioProvider } from '../modules/studios/contexts/StudioContext';
 
 export const APP_ROUTES = {
   HOME: 'home',
-  STUDIOS: 'studios'
+  STUDIO: 'studio'
 }
 
 export const App = () => {
@@ -21,11 +22,12 @@ export const App = () => {
   return <StudioProvider>
     <nav>
       <Link to={`/${APP_ROUTES.HOME}`}>HOME</Link>
-      <Link to={`/${APP_ROUTES.STUDIOS}`}>STUDIOS</Link>
+      <Link to={`/${APP_ROUTES.STUDIO}`}>STUDIOS</Link>
     </nav>
     <Routes>
       <Route path={APP_ROUTES.HOME} element={<Home />} />
-      <Route path={APP_ROUTES.STUDIOS} element={<Studios />} />
+      <Route path={APP_ROUTES.STUDIO} element={<StudioList />} />
+      <Route path={`${APP_ROUTES.STUDIO}/:id`} element={<StudioProfile />} />
       <Route path="*" element={<Navigate to={APP_ROUTES.HOME} />} />
     </Routes>
     <Outlet></Outlet>
