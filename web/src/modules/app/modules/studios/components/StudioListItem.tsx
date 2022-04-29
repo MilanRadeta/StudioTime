@@ -13,11 +13,11 @@ export const StudioListItem = ({ studio }: StudioProps) => {
     const { address, name, openHours, rooms } = studio;
     const { city, number, street } = address;
     const goToProfile = useCallback(() => { navigate(`/${APP_ROUTES.STUDIO}/${studio.uid}`) }, [navigate, studio])
-    return <div onClick={goToProfile}>
+    return <div style={{ border: '1px solid black', margin: '1px', display: 'flex', flexDirection: 'column' }} onClick={goToProfile}>
         <div>
             <strong>{name}</strong>
-            <label>{`${city}, ${street} ${number}`}</label>
-            <em>{`${rooms.length} room${rooms.length === 1 ? '' : 's'}`}</em>
+            <div>{`${city}, ${street} ${number}`}</div>
+            <div>{`${rooms.length} room${rooms.length === 1 ? '' : 's'}`}</div>
         </div>
         <div>
             {openHours.map((oh, i) => <OpenHours key={i} openHours={oh}></OpenHours>)}
