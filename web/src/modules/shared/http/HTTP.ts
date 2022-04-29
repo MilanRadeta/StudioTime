@@ -33,10 +33,13 @@ export const useHttp = () => {
             config.headers = new Headers({ ...config.headers ?? {}, 'Authorization': `Bearer ${token}` });
         }
         const response = await fetch(resource, config);
-
+        
         if (response.status === HTTPStatusCode.UNAUTHORIZED) {
             setToken('');
+        } else if (!response.ok) {
+            throw await response.json();
         }
+
 
         return { ...response, data: await response.json() as T };
     }, [token, setToken]);
