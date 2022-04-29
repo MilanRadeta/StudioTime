@@ -6,7 +6,7 @@ export class Rehearsal {
     uid: string;
 
     @IsDate()
-    day: Date;
+    date: Date;
 
     @ValidateNested()
     @Type(() => Period)

@@ -42,7 +42,7 @@ export class RehearsalValidationService {
 
   private async isPeriodValid(rehearsal: Rehearsal) {
     const studio = await this.studioService.findOne(rehearsal.studioId);
-    const openHoursForDay = studio.openHours.filter(oh => oh.dayOfWeek === rehearsal.day.getDay())
+    const openHoursForDay = studio.openHours.filter(oh => oh.dayOfWeek === rehearsal.date.getDay())
     const openPeriodsForDay = openHoursForDay.map(oh => periodToDays(oh.period));
     const scheduledPeriod = periodToDays(rehearsal.period);
     return openPeriodsForDay.some(op => scheduledPeriod.from >= op.from && scheduledPeriod.to <= op.to);
@@ -55,8 +55,8 @@ export class RehearsalValidationService {
         return false;
       }
 
-      const rDay = dayjs(r.day).startOf('day');
-      const rehearsalDay = dayjs(rehearsal.day).startOf('day');
+      const rDay = dayjs(r.date).startOf('day');
+      const rehearsalDay = dayjs(rehearsal.date).startOf('day');
       const isSameDay = rDay.isSame(rehearsalDay);
       return r.room === rehearsal.room && isSameDay
     });
