@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { useStudio } from "../contexts/StudioContext";
+import { useStudioContext } from "../contexts/StudioContext";
 import { StudioListItem } from "./StudioListItem";
 
 export const StudioList = () => {
-    const { studios, loadStudios } = useStudio();
+    const { studios, loadStudios } = useStudioContext();
     useEffect(() => loadStudios(), [loadStudios]);
     return <>
         <h1>Studios</h1>

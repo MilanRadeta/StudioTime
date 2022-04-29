@@ -9,19 +9,30 @@ interface StudioContextType {
   loadStudio: (id: string) => void;
 }
 
-export const StudioProvider = ({ children }: { children: React.ReactNode }) => {
-  const [studios, setStudios] = React.useState<StudioDto[]>([]);
-  const [studio, setStudio] = React.useState<StudioDto | undefined>(undefined);
-
+const useSingleStudio = () => {
   const http = useHttp();
+  const [studio, setStudio] = React.useState<StudioDto | undefined>(undefined);
+  const loadStudio = useCallback((id: string) => {
+    http<StudioDto>(`studio/${id}`).then(res => setStudio(res.data));
+  }, [http, setStudio])
+
+  return { studio, loadStudio };
+}
+
+const useStudios = () => {
+  const http = useHttp();
+  const [studios, setStudios] = React.useState<StudioDto[]>([]);
   const loadStudios = useCallback(() => {
     http<StudioDto[]>('studio').then(res => setStudios(res.data));
 
   }, [http, setStudios])
 
-  const loadStudio = useCallback((id: string) => {
-    http<StudioDto>(`studio/${id}`).then(res => setStudio(res.data));
-  }, [http, setStudio])
+  return { studios, loadStudios };
+}
+
+export const StudioProvider = ({ children }: { children: React.ReactNode }) => {
+  const { studio, loadStudio } = useSingleStudio();
+  const { studios, loadStudios } = useStudios();
 
   const value = useMemo(() =>
     ({ studios, studio, loadStudios, loadStudio }),
@@ -31,4 +42,4 @@ export const StudioProvider = ({ children }: { children: React.ReactNode }) => {
 }
 
 export const StudioContext = React.createContext<StudioContextType>(null!);
-export const useStudio = () => React.useContext(StudioContext);
+export const useStudioContext = () => React.useContext(StudioContext);
