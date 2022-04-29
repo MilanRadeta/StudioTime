@@ -1,4 +1,4 @@
-export interface Period {
+export interface PeriodDto {
     from: string;
     to: string;
 }

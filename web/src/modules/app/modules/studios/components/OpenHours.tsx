@@ -1,5 +1,6 @@
 import { DayOfWeek } from "../../../../shared/model/DayOfWeek";
 import { OpenHoursDto } from "../../../../shared/model/OpenHoursDto";
+import { Period } from "./Period";
 
 type OpenHoursProps = {
     openHours: OpenHoursDto
@@ -18,6 +19,6 @@ const DAY_OF_WEEK: Record<DayOfWeek, string> = {
 export const OpenHours = ({ openHours }: OpenHoursProps) => {
     const { dayOfWeek, period } = openHours;
     return <div>
-        {DAY_OF_WEEK[dayOfWeek]} {period.from} - {period.to}
+        {DAY_OF_WEEK[dayOfWeek]} <Period period={period}></Period>
     </div>
 }

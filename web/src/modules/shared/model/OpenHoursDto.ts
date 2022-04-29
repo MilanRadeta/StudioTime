@@ -1,7 +1,7 @@
 import { DayOfWeek } from "./DayOfWeek";
-import { Period } from "./Period";
+import { PeriodDto } from "./PeriodDto";
 
 export interface OpenHoursDto {
-    period: Period;
+    period: PeriodDto;
     dayOfWeek: DayOfWeek;
 }
