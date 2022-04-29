@@ -26,7 +26,7 @@ export const StudioRehearsalScheduler = () => {
         setRoom(rehearsal.room);
         setFrom(from);
         setTo(to);
-    }, []);
+    }, [from, to, setRoom, setFrom, setTo]);
     const formInputStyle: CSSProperties = useMemo(() => ({ display: 'flex', alignItems: "center" }), []);
     const timePickerProps = useMemo(() => ({
         showTimeSelect: true,

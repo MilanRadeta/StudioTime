@@ -8,7 +8,7 @@ type RehearsalProps = {
 };
 
 export const Rehearsal = ({ rehearsal, onClick }: RehearsalProps) => {
-    const onRootClick = useCallback(() => onClick(rehearsal), [rehearsal]);
+    const onRootClick = useCallback(() => onClick(rehearsal), [rehearsal, onClick]);
     return <div onClick={onRootClick}>
         Room: {rehearsal.room},
         <Period period={rehearsal.period}></Period>
