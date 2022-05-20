@@ -28,4 +28,8 @@ export abstract class CrudService<T extends BaseEntity> {
     remove(id: string) {
         return this.repo.remove(id);
     }
+
+    clear() {
+        return this.repo.clear();
+    }
 }

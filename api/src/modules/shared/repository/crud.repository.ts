@@ -43,4 +43,9 @@ export abstract class CrudRepository<T extends BaseEntity> {
     async remove(id: string) {
         await this.collection.doc(id).delete();
     }
+    
+    async clear() {
+        const docs = await this.collection.listDocuments();
+        await Promise.all(docs.map(d => this.remove(d.id)));
+    }
 }

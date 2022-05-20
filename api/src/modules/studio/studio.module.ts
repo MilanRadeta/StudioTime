@@ -7,6 +7,7 @@ import { StudioService } from './studio.service';
 @Module({
   imports: [SharedModule],
   controllers: [StudioController],
-  providers: [StudioRepository, StudioService]
+  providers: [StudioRepository, StudioService],
+  exports: [StudioService],
 })
 export class StudioModule {}

@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
-import { RehearsalService } from './rehearsal.service';
-import { RehearsalController } from './rehearsal.controller';
 import { SharedModule } from '../shared/shared.module';
+import { StudioModule } from '../studio/studio.module';
+import { RehearsalController } from './rehearsal.controller';
 import { RehearsalRepository } from './rehearsal.repository';
-import { StudioService } from '../studio/studio.service';
-import { StudioRepository } from '../studio/studio.repository';
+import { RehearsalService } from './rehearsal.service';
 import { RehearsalValidationService } from './services/rehearsal-validation.service';
 
 @Module({
-  imports: [SharedModule],
+  imports: [SharedModule, StudioModule],
   controllers: [RehearsalController],
-  providers: [RehearsalRepository, RehearsalService, RehearsalValidationService, StudioRepository, StudioService]
+  providers: [RehearsalRepository, RehearsalService, RehearsalValidationService],
+  exports: [RehearsalService]
 })
-export class RehearsalModule {}
+export class RehearsalModule { }
