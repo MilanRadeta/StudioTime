@@ -34,21 +34,22 @@ export class RehearsalService extends CrudService<Rehearsal> {
 
     const studio = await this.studioService.findOne(id);
     const rehearsals = await this.findByStudioId(id, date, room);
-    const openHours = studio.openHours.find(oh => oh.dayOfWeek === date.getDay())?.period;
-    
-    if (!openHours) {
+    const openHours = studio.openHours.filter(oh => oh.dayOfWeek === date.getDay()).map(oh => oh.period);
+    if (!openHours.length) {
       return [];
     }
+
     const rooms = room ? [room] : studio.rooms;
-    return rooms.flatMap(r =>
-      this.getAvailablePeriods(rehearsals, r, openHours).map(period => ({
+    return rooms.flatMap(r => openHours.flatMap(oh =>
+      this.getAvailablePeriods(rehearsals, r, oh).map(period => ({
         uid: '',
         date,
         period,
         room: r,
         studioId: id,
         clientId: '',
-      })));
+      })))
+    );
   }
 
   async update(entity: Partial<Rehearsal>) {
